@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday Aayusha</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+
+    <!-- Cake Container -->
+    <div class="cake-container" id="cake-container">
+      <div class="cake">
+        <div class="layer layer3"></div>
+        <div class="frosting frosting3"></div>
+
+        <div class="layer layer2"></div>
+        <div class="frosting frosting2"></div>
+
+        <div class="layer layer1"></div>
+        <div class="frosting frosting1"></div>
+
+        <!-- Candle -->
+        <div class="candle" id="candle" title="Click the candle!">
+          <div class="flame"></div>
+          <div class="wick"></div>
+        </div>
+      </div>
+      <p class="instruction">🎂 Click the candle Kokil kanthi Apsara 🎂</p>
+    </div>
+
+    <!-- Surprise Greeting -->
+    <div class="greeting hidden" id="greeting">
+      <h1>🎉 Happy Birthday Aayusha! 🎉</h1>
+      <p>Wishing you love, joy, and unforgettable moments <br> on your special day <br> My little Sis 💖🎂</p>
+    </div>
+
+    <!-- Balloons container -->
+    <div class="balloon-container" id="balloon-container"></div>
+
+    <audio id="bday-audio" src="bdaysong.mp3"></audio>
+  </div>
+
+  <script>
+    document.getElementById('candle').addEventListener('click', () => {
+      const cakeContainer = document.getElementById('cake-container');
+      const greeting = document.getElementById('greeting');
+      const audio = document.getElementById('bday-audio');
+
+      if (!greeting.classList.contains('hidden')) return; // prevent multiple clicks
+
+      // Fade out cake container
+      cakeContainer.style.transition = 'opacity 1s ease';
+      cakeContainer.style.opacity = '0';
+
+      // After fade, hide cake container and show greeting
+      setTimeout(() => {
+        cakeContainer.style.display = 'none';
+        greeting.classList.remove('hidden');
+        audio.play();
+        generateBalloons(30);
+      }, 1000);
+    });
+
+    function generateBalloons(count) {
+      const container = document.getElementById("balloon-container");
+      const colors = ["color1", "color2", "color3", "color4", "color5", "color6"];
+
+      for (let i = 0; i < count; i++) {
+        const balloon = document.createElement("div");
+        balloon.classList.add("balloon");
+
+        balloon.classList.add(colors[Math.floor(Math.random() * colors.length)]);
+        balloon.style.left = Math.random() * 90 + 5 + "vw";
+        balloon.style.animationDuration = (6 + Math.random() * 6) + "s";
+        balloon.style.animationDelay = (Math.random() * 5) + "s";
+
+        container.appendChild(balloon);
+        balloon.addEventListener("animationend", () => {
+          balloon.remove();
+        });
+      }
+    }
+  </script>
+</body>
+</html>
+
+</html>
+
+
+
+
+
